@@ -8,8 +8,9 @@ Includes the following tools, tasks, and workflows:
 
 - [Browserify](http://browserify.org/) (with [browserify-shim](https://github.com/thlorenz/browserify-shim))
 - [Watchify](https://github.com/substack/watchify) (caching version of browserify for super fast rebuilds)
-- [SASS](http://sass-lang.com/) and [source maps](https://github.com/sindresorhus/gulp-ruby-sass#sourcemap)!)
-- [CoffeeScript](http://coffeescript.org/) (with source maps!)
+- [SASS](http://sass-lang.com/)(uses fast C/C++ port [LibSass](http://libsass.org/)) with source maps
+- [CoffeeScript](http://coffeescript.org/) with source maps
+- [Jade](http://jade-lang.com/) template engine 
 - [BrowserSync](http://browsersync.io) for live reloading and a static server
 - Image optimization
 - Error Notifications in Notification Center
@@ -59,5 +60,11 @@ gulp
 This will run the `default` gulp task defined in `gulp/tasks/default.js`, which does the following:
 - Run 'watch', which has 2 task dependencies, `['setWatch', 'browserSync']`
 - `setWatch` sets a variable that tells the browserify task whether or not to use watchify.
-- `browserSync` has `build` as a task dependecy, so that all your assets will be processed before browserSync tries to serve them to you in the browser.
-- `build` includes the following tasks: `['browserify', 'sass', 'images', 'markup']`
+- `browserSync` has `watch` as a task dependecy, so that all your assets will be processed before browserSync tries to serve them to you in the browser.
+
+```
+gulp build
+```
+
+This will minimize assets and html code. (Look at code in gulp/tasks/optimize.js ff your assets path is broken on server).
+

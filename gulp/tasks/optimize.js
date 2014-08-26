@@ -6,8 +6,8 @@ var uncss = require('gulp-uncss');
 var csso = require('gulp-csso');
 var uglify = require('gulp-uglify');
 var minifyHtml = require('gulp-minify-html');
-var autoprefixer    = require('gulp-autoprefixer');
-var gulpReplace    = require('gulp-replace');
+var autoprefixer = require('gulp-autoprefixer');
+var gulpReplace = require('gulp-replace');
 
 
 var AUTOPREFIXER_BROWSERS = [
@@ -26,17 +26,17 @@ var AUTOPREFIXER_BROWSERS = [
 gulp.task('optimize', function () {
   var assets = useref.assets();
 
-  return gulp.src(['.tmp/**/*.html', 'src/templates/**/*.html'])
+  return gulp.src(['.tmp/**/*.html'])
     .pipe(assets)
 
     // Concatenate And Minify JavaScript
-    .pipe(gulpIf('*.js.min', uglify({preserveComments: 'some'})))
+    .pipe(gulpIf('*.js', uglify({preserveComments: 'some'})))
 
     // Remove Any Unused CSS
     // Note: If not using the Style Guide, you can delete it from
     // the next line to only include styles your project uses.
-    .pipe(gulpIf('*.css.min', uncss({
-      html: glob.sync('{.tmp/**/*.html, src/templates/**/*.html}')
+    .pipe(gulpIf('*.css', uncss({
+      html: glob.sync('.tmp/**/*.html')
       // // CSS Selectors for UnCSS to ignore
       // ,ignore: [
       //   /.navdrawer-container.open/,
@@ -44,9 +44,9 @@ gulp.task('optimize', function () {
       // ]
     })))
 
-	.pipe(gulpIf('*.css.min', autoprefixer(AUTOPREFIXER_BROWSERS)))
+    .pipe(gulpIf('*.css', autoprefixer(AUTOPREFIXER_BROWSERS)))
     // Concatenate And Minify Styles
-    .pipe(gulpIf('*.css.min', csso()))
+    .pipe(gulpIf('*.css', csso()))
     
 
     .pipe(assets.restore())
@@ -55,7 +55,7 @@ gulp.task('optimize', function () {
 
     // Update some path
     .pipe(gulpIf('*.html', gulpReplace('/assets/', 'assets/')))
-    .pipe(gulpIf('*.css.min', gulpReplace('/assets/', '')))
+    .pipe(gulpIf('*.css', gulpReplace('/assets/', '')))
 
     // Minify Any HTML
     .pipe(gulpIf('*.html', minifyHtml()))

@@ -2,13 +2,18 @@ doctype html
 html(lang="en")
   head
     title asdfsdf
-    // build:css /assets/app.css.min
+    // build:css /assets/app.css
     link(rel="stylesheet", href="/assets/app.css")
     link(rel="stylesheet", href="/assets/test.css")
     // endbuild
+
   body
     block content
 
-    // build:js /assets/app.js.min
+    // build:js /assets/app.js
     script(src="/assets/app.js")
+    script(src="/assets/t.js")
+    script(src="/assets/phaser/build/phaser.min.js")
     // endbuild
+
+    
