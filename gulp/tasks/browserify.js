@@ -19,11 +19,9 @@ gulp.task('browserify', function() {
 
   var bundler = bundleMethod({
     // Specify the entry point of your app
-    entries: ['./src/javascript/app.coffee'],
+    entries: ['./src/scripts/app.coffee'],
     // Add file extentions to make optional in your requires
-    extensions: ['.coffee', '.hbs'],
-    // Enable source maps!
-    debug: true
+    extensions: ['.coffee']
   });
 
   var bundle = function() {
@@ -31,7 +29,7 @@ gulp.task('browserify', function() {
     bundleLogger.start();
 
     return bundler
-      .bundle()
+      .bundle({debug: global.isWatching})
       // Report compile errors
       .on('error', handleErrors)
       // Use vinyl-source-stream to make the
@@ -39,7 +37,7 @@ gulp.task('browserify', function() {
       // desired output filename here.
       .pipe(source('app.js'))
       // Specify the output destination
-      .pipe(gulp.dest('./build/'))
+      .pipe(gulp.dest('.tmp/assets/'))
       // Log when bundling completes!
       .on('end', bundleLogger.end);
   };

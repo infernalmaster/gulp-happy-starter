@@ -1,10 +1,10 @@
 var browserSync = require('browser-sync');
 var gulp        = require('gulp');
 
-gulp.task('browserSync', ['build'], function() {
-  browserSync.init(['build/**'], {
+gulp.task('browserSync', ['browserify', 'coffeelint', 'sass', 'images', 'jade'], function() {
+  browserSync.init(['.tmp/**'], {
     server: {
-      baseDir: ['build', 'src']
+      baseDir: ['.tmp', 'src']
     }
   });
 });

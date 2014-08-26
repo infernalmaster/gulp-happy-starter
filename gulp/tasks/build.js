@@ -1,3 +1,8 @@
 var gulp = require('gulp');
+var runSequence = require('run-sequence');
 
-gulp.task('build', ['browserify', 'sass', 'images', 'markup']);
+
+// Build Production Files, the Default Task
+gulp.task('build', function (cb) {
+  runSequence('clean', ['browserify', 'coffeelint', 'sass', 'images', 'jade'], ['optimize'], cb);
+});

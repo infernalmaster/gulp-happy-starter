@@ -1,16 +1,26 @@
 var gulp = require('gulp');
-var sass = require('gulp-ruby-sass');
+var sass = require('gulp-sass');
 var handleErrors = require('../util/handleErrors');
 var browserSync  = require('browser-sync');
+var gulpIf = require('gulp-if');
+var plumber = require('gulp-plumber');
 
-gulp.task('sass', ['images'], function () {
-  return gulp.src('src/sass/*.{sass, scss}')
-    .pipe(sass({
-      compass: true,
-      bundleExec: true,
-      sourcemap: true,
-      sourcemapPath: '../sass'
-    }))
-    .on('error', handleErrors)
-    .pipe(gulp.dest('build'));
+// var autoprefixer    = require('gulp-autoprefixer');
+
+
+// Compile and Automatically Prefix Stylesheets
+gulp.task('sass', function () {
+  // For best performance, don't add Sass partials to `gulp.src`
+  return gulp.src([
+      'src/sass/*.{scss, sass}',
+      'src/sass/**/*.css'
+    ])
+    .pipe(plumber({errorHandler: handleErrors}))
+    .pipe(gulpIf('*.scss', sass({
+      sourceComments: 'map'
+    })))
+
+    // .pipe(autoprefixer(AUTOPREFIXER_BROWSERS, { map: true }))
+
+    .pipe(gulp.dest('.tmp/assets'));
 });
