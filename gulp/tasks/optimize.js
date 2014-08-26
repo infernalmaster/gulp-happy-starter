@@ -1,13 +1,13 @@
-var gulp = require('gulp');
-var gulpIf = require('gulp-if');
-var glob = require('glob');
-var useref = require('gulp-useref');
-var uncss = require('gulp-uncss');
-var csso = require('gulp-csso');
-var uglify = require('gulp-uglify');
-var minifyHtml = require('gulp-minify-html');
+var gulp         = require('gulp');
+var gulpIf       = require('gulp-if');
+var glob         = require('glob');
+var useref       = require('gulp-useref');
+var uncss        = require('gulp-uncss');
+var csso         = require('gulp-csso');
+var uglify       = require('gulp-uglify');
+var minifyHtml   = require('gulp-minify-html');
 var autoprefixer = require('gulp-autoprefixer');
-var gulpReplace = require('gulp-replace');
+var gulpReplace  = require('gulp-replace');
 
 
 var AUTOPREFIXER_BROWSERS = [
@@ -53,7 +53,8 @@ gulp.task('optimize', function () {
     .pipe(useref())
 
 
-    // Update some path
+    // Update some path. Use that if you want open html pages from dist directory localy without server 
+    // or comment this 2 lines for using on server
     .pipe(gulpIf('*.html', gulpReplace('/assets/', 'assets/')))
     .pipe(gulpIf('*.css', gulpReplace('/assets/', '')))
 

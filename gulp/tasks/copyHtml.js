@@ -7,5 +7,5 @@ gulp.task('copyHtml', function() {
 
   return gulp.src('src/templates/**/*.html')
     .pipe(changed(dest)) // Ignore unchanged files
-	.pipe(gulp.dest(dest));
+    .pipe(gulp.dest(dest));
 });

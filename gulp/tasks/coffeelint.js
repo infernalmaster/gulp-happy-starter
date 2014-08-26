@@ -1,6 +1,6 @@
-var gulp = require('gulp');
+var gulp       = require('gulp');
 var coffeelint = require('gulp-coffeelint');
-var gulpIf = require('gulp-if');
+var gulpIf     = require('gulp-if');
 
 gulp.task('coffeelint', function () {
   return gulp.src('src/scripts/**/*.coffee')

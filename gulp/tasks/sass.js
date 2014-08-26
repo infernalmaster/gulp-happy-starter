@@ -4,7 +4,6 @@ var handleErrors = require('../util/handleErrors');
 var plumber = require('gulp-plumber');
 // var autoprefixer    = require('gulp-autoprefixer');
 
-
 // Compile and Automatically Prefix Stylesheets
 gulp.task('sass', function () {
   var dest = '.tmp/assets';
