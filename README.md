@@ -66,5 +66,5 @@ This will run the `default` gulp task defined in `gulp/tasks/default.js`, which 
 gulp build
 ```
 
-This will minimize assets and html code. (Look at code in gulp/tasks/optimize.js ff your assets path is broken on server).
+This will minimize assets and html code. (Look at code in gulp/tasks/optimize.js if your assets path is broken on server).
 
