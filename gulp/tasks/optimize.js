@@ -29,6 +29,7 @@ gulp.task('optimize', function () {
   return gulp.src(['.tmp/**/*.html'])
     .pipe(assets)
 
+    // todo maybe uglify before concat to exclude minified external libraries from minification
     // Concatenate And Minify JavaScript
     .pipe(gulpIf('*.js', uglify({preserveComments: 'some'})))
 
@@ -47,16 +48,17 @@ gulp.task('optimize', function () {
     .pipe(gulpIf('*.css', autoprefixer(AUTOPREFIXER_BROWSERS)))
     // Concatenate And Minify Styles
     .pipe(gulpIf('*.css', csso()))
-    
+
 
     .pipe(assets.restore())
     .pipe(useref())
 
 
-    // Update some path. Use that if you want open html pages from dist directory localy without server 
+    // Update some path. Use that if you want open html pages from dist directory localy without server
     // or comment this 2 lines for using on server
     .pipe(gulpIf('*.html', gulpReplace('/assets/', 'assets/')))
     .pipe(gulpIf('*.css', gulpReplace('/assets/', '')))
+    // .pipe(gulpIf('*.js', gulpReplace('./assets/', 'assets/')))
 
     // Minify Any HTML
     .pipe(gulpIf('*.html', minifyHtml()))
@@ -64,4 +66,3 @@ gulp.task('optimize', function () {
     // Output Files
     .pipe(gulp.dest('dist'));
 });
-

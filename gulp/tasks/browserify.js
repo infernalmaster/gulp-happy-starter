@@ -15,13 +15,14 @@ var source       = require('vinyl-source-stream');
 
 gulp.task('browserify', function() {
 
-  var bundleMethod = global.isWatching ? watchify : browserify;
-
-  var bundler = bundleMethod({
+  var bundler = browserify({
+    // Required watchify args
+    cache: {}, packageCache: {}, fullPaths: true,
     // Specify the entry point of your app
     entries: ['./src/scripts/app.coffee'],
     // Add file extentions to make optional in your requires
-    extensions: ['.coffee']
+    extensions: ['.coffee'],
+    debug: global.isWatching
   });
 
   var bundle = function() {
@@ -29,7 +30,7 @@ gulp.task('browserify', function() {
     bundleLogger.start();
 
     return bundler
-      .bundle({debug: global.isWatching})
+      .bundle()
       // Report compile errors
       .on('error', handleErrors)
       // Use vinyl-source-stream to make the
@@ -43,9 +44,11 @@ gulp.task('browserify', function() {
   };
 
   if(global.isWatching) {
+    bundler = watchify(bundler);
     // Rebundle with watchify on changes.
     bundler.on('update', bundle);
   }
+
 
   return bundle();
 });

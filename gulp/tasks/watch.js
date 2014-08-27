@@ -19,4 +19,8 @@ gulp.task('watch', ['setWatch', 'browserSync'], function() {
   gulp.watch('src/fonts/**', ['fonts']);
 
   gulp.watch('src/images/**', ['images']);
+
+  gulp.watch('src/sounds/**', ['sounds']);
+
+
 });
