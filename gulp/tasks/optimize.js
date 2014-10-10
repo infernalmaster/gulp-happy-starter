@@ -58,7 +58,7 @@ gulp.task('optimize', function () {
     // or comment this 2 lines for using on server
     .pipe(gulpIf('*.html', gulpReplace('/assets/', 'assets/')))
     .pipe(gulpIf('*.css', gulpReplace('/assets/', '')))
-    // .pipe(gulpIf('*.js', gulpReplace('./assets/', 'assets/')))
+    .pipe(gulpIf('*.js', gulpReplace('/assets/', 'assets/')))
 
     // Minify Any HTML
     .pipe(gulpIf('*.html', minifyHtml()))
