@@ -8,19 +8,18 @@ var gulp = require('gulp');
 
 gulp.task('watch', ['setWatch', 'browserSync'], function() {
   gulp.watch('src/sass/**/*.{scss, sass}', ['sass']);
-  gulp.watch('src/sass/**/*.css', ['copyCss']);
+  gulp.watch('src/sass/**/*.css', ['copyCssJsHtml']);
 
   gulp.watch('src/templates/**/*.jade', ['jade']);
-  gulp.watch('src/templates/**/*.html', ['copyHtml']);
+  gulp.watch('src/templates/**/*.html', ['copyCssJsHtml']);
 
   gulp.watch('src/scripts/**/*.coffee', ['coffeelint']);
-  gulp.watch('src/scripts/**/*.js', ['copyJs']);
-
-  gulp.watch('src/fonts/**', ['fonts']);
+  gulp.watch('src/scripts/**/*.js', ['copyCssJsHtml']);
 
   gulp.watch('src/images/**', ['images']);
 
-  gulp.watch('src/sounds/**', ['sounds']);
+  gulp.watch('src/fonts/**', ['copyOther']);
+  gulp.watch('src/sounds/**', ['copyOther']);
 
 
 });

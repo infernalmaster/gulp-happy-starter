@@ -2,8 +2,9 @@ var browserSync = require('browser-sync');
 var gulp        = require('gulp');
 
 gulp.task('browserSync', [
-  'browserify', 'coffeelint', 'copyJs', 'fonts', 'sounds', 'sass', 'copyCss',
-  'images', 'jade', 'copyHtml'
+  'browserify', 'coffeelint',
+  'copyCssJsHtml', 'copyOther',
+  'sass', 'images', 'jade'
 ], function() {
   // watch .tmp and bower dir for changes
   browserSync.init(['.tmp/**', '.bower_components/**'], {
