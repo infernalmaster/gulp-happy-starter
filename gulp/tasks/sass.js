@@ -10,7 +10,7 @@ gulp.task('sass', function () {
   var dest = '.tmp/assets';
 
   // For best performance, don't add Sass partials to `gulp.src`
-  return gulp.src(['src/sass/*.{scss, sass}'])
+  return gulp.src(['src/styles/*.{scss, sass}'])
     .pipe(plumber({errorHandler: handleErrors}))
     .pipe(sourcemaps.init({}))
     .pipe(sass({

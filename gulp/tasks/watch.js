@@ -7,8 +7,8 @@
 var gulp = require('gulp');
 
 gulp.task('watch', ['setWatch', 'browserSync'], function() {
-  gulp.watch('src/sass/**/*.{scss, sass}', ['sass']);
-  gulp.watch('src/sass/**/*.css', ['copyCssJsHtml']);
+  gulp.watch('src/styles/**/*.{scss, sass}', ['sass']);
+  gulp.watch('src/styles/**/*.css', ['copyCssJsHtml']);
 
   gulp.watch('src/templates/**/*.jade', ['jade']);
   gulp.watch('src/templates/**/*.html', ['copyCssJsHtml']);
