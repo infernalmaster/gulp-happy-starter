@@ -3,7 +3,7 @@ var gulp        = require('gulp');
 
 gulp.task('browserSync', [
   'browserify', 'coffeelint',
-  'copyCssJsHtml', 'copyOther',
+  'copyCssJs', 'copyHtml', 'copyOther',
   'sass', 'images', 'jade'
 ], function() {
   // watch .tmp and bower dir for changes

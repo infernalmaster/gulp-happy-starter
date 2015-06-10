@@ -8,13 +8,13 @@ var gulp = require('gulp');
 
 gulp.task('watch', ['setWatch', 'browserSync'], function() {
   gulp.watch('src/styles/**/*.{scss, sass}', ['sass']);
-  gulp.watch('src/styles/**/*.css', ['copyCssJsHtml']);
+  gulp.watch('src/styles/**/*.css', ['copyCssJs']);
 
   gulp.watch('src/templates/**/*.jade', ['jade']);
-  gulp.watch('src/templates/**/*.html', ['copyCssJsHtml']);
+  gulp.watch('src/templates/**/*.html', ['copyHtml']);
 
   gulp.watch('src/scripts/**/*.coffee', ['coffeelint']);
-  gulp.watch('src/scripts/**/*.js', ['copyCssJsHtml']);
+  gulp.watch('src/scripts/**/*.js', ['copyCssJs']);
 
   gulp.watch('src/images/**', ['images']);
 
