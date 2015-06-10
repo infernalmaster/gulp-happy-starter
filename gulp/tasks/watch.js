@@ -5,8 +5,13 @@
 */
 
 var gulp = require('gulp');
+var runSequence = require('run-sequence');
 
-gulp.task('watch', ['setWatch', 'browserSync'], function() {
+gulp.task('watch', function(cb) {
+
+  runSequence(['clean'], ['setWatch'], 'browserSync', cb);
+
+
   gulp.watch('src/styles/**/*.{scss, sass}', ['sass']);
   gulp.watch('src/styles/**/*.css', ['copyCssJs']);
 
